@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_140414) do
+ActiveRecord::Schema.define(version: 2020_08_01_142137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2020_08_01_140414) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "expired_at"
+    t.string "context"
     t.index ["user_id"], name: "index_issues_on_user_id"
   end
 
@@ -53,6 +55,13 @@ ActiveRecord::Schema.define(version: 2020_08_01_140414) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["issue_id"], name: "index_options_on_issue_id"
+  end
+
+  create_table "options_users", id: false, force: :cascade do |t|
+    t.bigint "option_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["option_id", "user_id"], name: "index_options_users_on_option_id_and_user_id"
+    t.index ["user_id", "option_id"], name: "index_options_users_on_user_id_and_option_id"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -68,6 +77,13 @@ ActiveRecord::Schema.define(version: 2020_08_01_140414) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
+  create_table "replies_users", id: false, force: :cascade do |t|
+    t.bigint "reply_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["reply_id", "user_id"], name: "index_replies_users_on_reply_id_and_user_id"
+    t.index ["user_id", "reply_id"], name: "index_replies_users_on_user_id_and_reply_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -77,7 +93,7 @@ ActiveRecord::Schema.define(version: 2020_08_01_140414) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
-    t.integer "answered_issues", default: 0
+    t.integer "userpoints", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
