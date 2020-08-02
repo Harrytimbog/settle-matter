@@ -1,0 +1,10 @@
+<% @issues.each do |issue| %>
+     <% if issue.easy? %>
+       <div class="m-2">
+         <div class="easy card-category-easy card-note-text">
+           <%= link_to "#{issue.question}", issue_path(issue) %>
+           <p class="font-italic">Created by <%= issue.user.username %></p>
+         </div>
+       </div>
+     <% end %>
+   <% end %>

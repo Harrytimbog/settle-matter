@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <% if @issues.empty? %>
+    <div class="mb-2 ml-3">
+      <div class="form-inline">
+        <%= form_tag issues_path, method: :get do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Want to search again?"%>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <%= link_to ">> No issues found 🤖. I think you should create one <<", new_issue_path %>
+    </div>
+  <% else %>
+    <div class="mb-2 ml-3">
+      <div class="form-inline">
+        <%= form_tag issues_path, method: :get do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "What's on your mind?"%>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+    <!-- Issues -->
+    <div class="container-fluid">
+      <!-- active issues -->
+      <div class="row">
+        <% @issues.active.each do |issue| %>
+          <div class="col-3">
+            <div class="mt-3 mb-5 color-parent card-ghost card-category card-note-text">
+              <div class="color-child rounded-circle <%= issue.category %>"></div>
+                <% if issue.can_users_vote? %>
+                  <% if issue.easy? %>
+                    <p class="px-2 py-1 d-inline little-text-border">ACTIVE FOR 1 DAY</p><br>
+                  <% elsif issue.medium? %>
+                    <p class="px-2 py-1 d-inline little-text-border mt-0">ACTIVE FOR 3 DAYS</p><br>
+                  <% elsif issue.hard? %>
+                    <p class="px-2 py-1 d-inline little-text-border">ACTIVE FOR 7 DAYS</p><br>
+                  <% end %>
+                <% end %>
+              <div class="mt-1" id="min-card-width"><%= link_to "#{issue.question}", issue_path(issue) %></div>
+              <p class="font-italic little-text">Created by <strong><%= issue.user.username %></strong></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <!-- expired issues -->
+      <div class="row">
+        <% @issues.expired.each do |issue| %>
+          <div class="col-3">
+            <div class="mt-3 mb-5 color-parent card-ghost card-category card-note-text">
+              <div class="color-child rounded-circle <%= issue.category %>"></div>
+              <p class="px-2 py-1 d-inline little-text-border">EXPIRED</p>
+              <div class="mt-1" id="min-card-width"><%= link_to "#{issue.question}", issue_path(issue) %></div>
+              <p class="font-italic little-text">Created by <strong><%= issue.user.username %></strong></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

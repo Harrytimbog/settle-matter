@@ -1,6 +1,6 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon d-flex justify-space-between mx-5">
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <i class="fas fa-comments"></i>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,23 +11,38 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
+        <li class="nav-item">
+          <div class="btn btn-outline-primary pr-2 mt-2 little-text" id="btn-thin">
+            <i class="fas fa-circle-notch pr-1"></i>
+            <%= link_to "All issues", issues_path %>
+          </div>
         </li>
         <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
+          <div class="btn btn-outline-primary mx-5 mt-2 little-text" id="btn-thin">
+            <i class="fas fa-circle-notch pr-1"></i>
+            <%= link_to "Post a issue", new_issue_path %>
+          </div>
+        </li>
+        <li class="nav-item active mr-2 ml-5 mt-2 mb-3">
+          <%= current_user.username %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%  if current_user.avatar.attached? %>
+            <%= cl_image_tag current_user.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <%= image_tag "default_avatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "Browse issues", issues_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        <li class="nav-item active pr-2 pl-5 pt-1 little-text" id="text-blue">
+          <%= link_to "LOGIN", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item active pr-2 pl-5 pt-1 little-text" id="text-blue">
+          <%= link_to "SIGN UP", new_user_registration_path, class: "nav-link" %>
         </li>
       <% end %>
     </ul>

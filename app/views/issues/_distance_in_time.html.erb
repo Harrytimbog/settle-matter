@@ -1,0 +1,5 @@
+<% if issue.can_users_vote? %>
+  <%= "#{time_ago_in_words(issue.expired_at)} left" %>
+<% else %>
+  <%= "Expired #{time_ago_in_words(issue.expired_at)} ago" %>
+<% end %>

@@ -1,0 +1,196 @@
+.card-ghost {
+  opacity: .97;
+  box-shadow: 0 8px 40px rgba(0,0,0,.1);
+}
+
+.card-ghost:hover{
+  opacity: 1;
+  box-shadow: 0 8px 40px rgba(0,0,0,.3);
+}
+
+.card-category {
+  background-color: $saffron;
+  min-height: 15em;
+  width: 15em;
+  box-sizing: border-box;
+  padding: 2em;
+  position: relative;
+}
+
+.card-tape-featured {
+  height: 20px;
+  width: 60px;
+  background-color: rgba(214,165,19,0.8);
+  position: absolute;
+  top: -12px;
+  right: 87px;
+}
+
+.card-category:after {
+  content: "";
+  position: absolute;
+  bottom: -2em;
+  left: 0;
+  right: 2em;
+  border-width: 1em;
+  border-style: solid;
+  border-color: $saffron;
+}
+
+.card-category:before {
+  content: "";
+  position: absolute;
+  bottom: -2em;
+  right: 0em;
+  border-width: 2em 2em 0 0;
+  border-style: solid;
+  border-color: darken($saffron, 10%) transparent;
+}
+
+.card-note-text {
+  a {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: black;
+    font-family: $headers-font;
+    text-decoration: none;
+  }
+}
+
+.easy {
+  background-color: $easy;
+}
+
+.medium {
+  background-color: $medium;
+}
+
+.hard {
+  background-color: $hard;
+}
+
+.narrow-box {
+  width: 250px;
+  margin-right: 40px;
+  margin-left: 10px;
+  h5 {
+    color: black;
+  }
+}
+
+.narrow-viewport {
+  width: 60%;
+  padding: 90px;
+  margin: 0 auto;
+  background-color: $blue;
+  box-sizing: content-box;
+  h5 {
+    color: black;
+  }
+}
+
+.background-color-input-form {
+  background-color: #58e6fc;
+}
+
+.background-color-comment-form {
+  background-color: #d3f6ff;
+}
+
+.show-options {
+  box-sizing: content-box;
+
+#text-vote-option {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+#text-vote-option:hover {
+    color: $blue;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}
+
+.card-box-show {
+  width: 70%;
+  box-sizing: content-box;
+  h2 {
+    font-weight: bold;
+    font-size: 50px;
+  }
+}
+
+.circle-percentage {
+  background-color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-show {
+  height: 100vh;
+}
+
+.parent {
+  position: relative;
+}
+
+.child-comment-icons {
+  position: absolute;
+  top: 6px;
+  right: 2px;
+  i {
+    font-size: 24px;
+    color: gray;
+    padding-right: 10px;
+  }
+}
+
+.card-fix {
+  min-height: 15em;
+  width:  15em;
+}
+
+.context-box {
+  width: 60%;
+  margin: 0 auto;
+  font-size: 15px;
+}
+
+.context-box:first-letter {
+  padding-left: 5px;
+  font-size: 17px;
+}
+
+.dilemma-form-background {
+  background-image: url("doodle.png");
+  padding: 90px;
+}
+
+.reply-container {
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+.show-search-container {
+  padding: 5px;
+  height: 50px;
+  width: 30%;
+  background-color: rgba(255,255,255,0.7);
+}
+
+.card-grow:hover {
+  transform: scale(1.10);
+  transition: 500ms;
+}
+
+#bg-comment {
+  background-color: rgba(255,255,255,0.3);
+}

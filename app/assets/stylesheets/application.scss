@@ -10,4 +10,49 @@
 
 // Your CSS partials
 @import "components/index";
+// @import "components/profile";
 @import "pages/index";
+
+// Social Media
+
+
+//Social Media Design
+$size: 27px;
+
+.social-share-button {
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+  }
+}
+
+#social-media {
+  position: absolute;
+  top: 588px;
+  right: 110px;
+}
+
+.little-text {
+  font-size: 12px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.little-text-border {
+  font-size: 10px;
+  letter-spacing: 1px;
+  border: 1px dotted $gray;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.word:first-letter {
+  font-size: 20px;
+  font-weight: bold;
+}

@@ -1,0 +1,50 @@
+<div class="card-box-show container mt-4 p-5 <%=issue.category %>">
+  <div class="border border-dark">
+    <div class="p-5">
+      <% ifissue.category? %>
+        <p class="ml-5 px-2 py-1 d-inline little-text-border">
+          <%= render "distance_in_time",issue:issue %>
+        </p>
+      <% end %>
+      <h2 class="p-3 pb-3 border-bottom border-dark"><%=issue.question %></h2>
+      <p class="pl-5"><strong><%=issue.user.username %>'s</strong>issue</p>
+    </div>
+    <div class="context-box">
+      <p class="border-left border-white pl-3"><%=issue.context %></p>
+    </div>
+    <div class="container d-flex flex-column justify-content-center">
+      <div class="d-flex justify-content-around">
+        <%issue.options.each do |option| %>
+            <% ifissue.has_user_voted?(current_user) ||issue.user == current_user || !dilemma.can_users_vote? %>
+              <div class="show-options d-flex flex-column align-items-center mx-5 mb-5 p-3">
+                <div class="circle-percentage mb-1">
+                  <% percentage =issue.options.reduce(0) { |sum, option| sum + option.users.count } %>
+                  <% if percentage > 0 %>
+                    <%= (option.users.count * 100) / percentage  %> %
+                  <% else %>
+                    0%
+                  <% end %>
+                </div>
+                <p class="text-dark"><%= option.description %></p>
+              </div>
+            <% else %>
+              <%= link_to upvotes_path(option.id) do %>
+                <div class="show-options d-flex flex-column align-items-center mx-5 mb-5 p-4 card-ghost card-grow">
+                  <p class="badge badge-primary"><strong>Vote!</strong></p>
+                  <div class="circle-percentage mb-1">
+                    <% percentage =issue.options.reduce(0) { |sum, option| sum + option.users.count } %>
+                    <% if percentage > 0 %>
+                      <%= (option.users.count * 100) / percentage  %> %
+                    <% else %>
+                      0%
+                    <% end %>
+                  </div>
+                  <p class="text-dark text-bold" id="text-vote-option"><%= option.description %></p>
+                </div>
+              <% end %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
